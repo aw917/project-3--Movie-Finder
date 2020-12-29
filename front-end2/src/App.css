@@ -1,0 +1,158 @@
+/*
+==========================================
+Imports
+==========================================
+*/
+@import url('https://fonts.googleapis.com/css2?family=Xanh+Mono&display=swap');
+
+/*
+==========================================
+Global
+==========================================
+*/
+body {
+  background-color: gainsboro;
+}
+
+/*
+==========================================
+Nav Bar
+==========================================
+*/
+nav {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  height: 55px;
+  margin: 0 auto;
+  background-color: orange;
+}
+
+.nav-links {
+  width: 100%;
+  display: flex;
+  justify-content: space-evenly;
+  background-color: orange;
+  color: white;
+  font-weight: 700;
+}
+
+.nav-links Link {
+  background-color: orange;
+}
+
+.nav-links:hover {
+  background-color: yellow;
+  cursor: pointer;
+  color: white;
+  font-weight: 700;
+}
+
+/*
+==========================================
+Main Page
+==========================================
+*/
+.lightbulb-main {
+  max-width: 650px;
+  height: auto;
+  margin-left: 50%;
+  transform: translateX(-50%);
+  border-radius: 5px;
+  margin-top: 2.5%;
+}
+
+
+/*
+==========================================
+Movie Finder Page
+==========================================
+*/
+.movie-search-input {
+  border-radius: 5px;
+  border-color: white;
+  border-style: solid;
+  background-color: #800080;
+  color: white;
+  font-weight: bold;
+  margin-left: 1%;
+  margin-right: 2.5%;
+}
+
+.movies-search-results {
+  transform: translateX(-50%);
+  margin-left: 50%;
+  width: 550px;
+  height: auto;
+  background-color: orange;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-direction: column;
+  margin-top: 2%;
+  margin-bottom: 2%;
+  border-radius: 10px;
+  border-color: purple;
+  border-style: solid;
+  border-width: 3px;
+  text-align: center;
+}
+
+.movie-search-button {
+  color: white;
+  background-color: orange;
+}
+
+.movies-search-results p {
+  background-color: orange;
+  font-weight: 900;
+  font-size: 16px;
+}
+
+.movies-search-results li {
+  list-style: none;
+  background-color: orange;
+  font-family: 'Xanh Mono', monospace;
+  font-weight: 600;
+  color: black;
+}
+
+.movies-search-results img {
+  width: 50%;
+  
+  border-radius: 5px;
+  border-color: purple;
+  border-style: solid;
+  border-width: 2px;
+}
+
+.movies-search-results button {
+  border-radius: 5px;
+  border-color: black;
+  border-style: solid;
+  background-color: #800080;
+  color: white;
+  font-weight: 600;
+  margin-top: 1.5%;
+  margin-bottom: 1.5%;
+}
+.movies-search-results button:hover {
+  border-radius: 5px;
+  border-color: white;
+  border-style: solid;
+  background-color: orange;
+  color: black;
+  font-weight: 800;
+  margin-top: 1.5%;
+  margin-bottom: 1.5%;
+  cursor: pointer;
+}
+
+.subinfo-for-movies {
+  margin-bottom: 2.5%;
+}
+
+.subinfo-for-movies-header {
+  font-weight: 1000;
+  background-color: orange;
+}
