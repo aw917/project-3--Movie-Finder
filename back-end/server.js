@@ -8,23 +8,21 @@
 // ====================================
 // 1. Declare variables
 // ====================================
-
 require('dotenv').config();
 const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('cors');
 const app = express();
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 3001;
 const moviesController = require('./controllers/moviesController.js')
 const MONGOURI = process.env.MONGODB_URI;
+const router = express.Router();
 
 // ====================================
 // 2. Middleware
 // ====================================
 app.use(cors());
 app.use(express.json());
-
-app.use(cors());
 
 // ====================================
 // 3. Mongoose
@@ -35,7 +33,7 @@ mongoose.connect(MONGOURI, {
 })
 
 mongoose.connection.on('error', (err) => {
-    show(err.message);
+    console.log(err.message);
 })
 
 mongoose.connection.on('disconected', () => {
@@ -43,12 +41,17 @@ mongoose.connection.on('disconected', () => {
 })
 
 mongoose.connection.once('open', () => {
-    show('connected to mongo')
+    console.log('connected to mongo')
 })
 
 // ====================================
 // 4. Port
 // ====================================
+app.use(express.json());
+app.use('/favorited', moviesController);
+
 app.listen(PORT, () => {
     console.log('its working on port ' + PORT)
 });
+
+module.exports = router;

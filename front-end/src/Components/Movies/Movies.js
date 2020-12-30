@@ -6,17 +6,17 @@ const Movies = () => {
     // for populating
     const [movieSearch, setMovieSearch] = useState([]);
     const [movieInfo, setMovieInfo] = useState([]);
-    const [moviePoster, setMoviePoster] = useState([]);
+    // const [moviePoster, setMoviePoster] = useState([]);
     const [movieTitle, setMovieTitle] = useState([]);
     const [movieYear, setMovieYear] = useState([]);
+
+    // Use ref
+    const noteInput = useRef(null);
 
     // API info
     const apiKey = '3b12114f';
 
-    // const movieTitle = useRef(null);
-    // const movieYear = useRef(null);
-
-    // get info from the API
+    // Retrieve individual movie information from API
     const getMovieInfo = async (idHolder) => {
         let movieInfoArr = [];
         for (let i = 0; i < idHolder.length; i++) {
@@ -37,7 +37,7 @@ const Movies = () => {
         setMovieInfo(movieInfoArr);
     }
 
-    // Search API
+    // Search API for movie title and year
     const searchForMovies = async () => {
         try {
           // variable to hold our endpoint
@@ -59,15 +59,24 @@ const Movies = () => {
     const handleSubmit = async (e) => {
         // prevent a refresh
         e.preventDefault();
-        // clear all results
         setMovieInfo([]);
         searchForMovies();
     }
 
+    const handleFavoriteSubmit = async (e, id) => {
+        e.preventDefault();
+        let noteHolder = noteInput.current.value;
+        let imdbID = id;
+        let newFavorite = JSON.stringify({
+            imdbID: imdbID,
+            note: noteHolder
+        });
+        e.currentTarget.reset();
+        console.log(newFavorite);
+    }
 
     // Use effect necessary stuff
     useEffect(() => {
-        // searchForMovies();
         console.log("use effect")
     }, []);
 
@@ -88,14 +97,20 @@ const Movies = () => {
                     return (
                         <div className="movies-search-results">
                             <p>{e.Title} ({e.Year})</p>
-                
                             <img src={`${e.Poster}`} alt={e.Title}/>
-                            <button>Add to Favorites</button>
+                            <form onSubmit={
+                                (evt) => {
+                                    handleFavoriteSubmit(evt, e.imdbID);
+                                }
+                            }>
+                                <input type="text" className="movie-note-input" ref={noteInput}/>
+                                <input type="submit" value="Add to Favorites" className="movie-note-button"/>
+                            </form>
                             <div className="subinfo-for-movies">
-                                <li key={e.imdbID}><span className="subinfo-for-movies-header">Director:</span> {e.Director}</li>
-                                <li key={e.imdbID}><span className="subinfo-for-movies-header">Country:</span> {e.Country}</li>
-                                <li key={e.imdbID}><span className="subinfo-for-movies-header">Awards:</span> {e.Awards}</li>
-                                <li key={e.imdbID}><span className="subinfo-for-movies-header">Genre:</span> {e.Genre}</li>
+                                <li key={`director-${e.imdbID}`}><span className="subinfo-for-movies-header">Director:</span> {e.Director}</li>
+                                <li key={`country-${e.imdbID}`}><span className="subinfo-for-movies-header">Country:</span> {e.Country}</li>
+                                <li key={`awards-${e.imdbID}`}><span className="subinfo-for-movies-header">Awards:</span> {e.Awards}</li>
+                                <li key={`genre-${e.imdbID}`}><span className="subinfo-for-movies-header">Genre:</span> {e.Genre}</li>
                             </div>
                         </div>
                     )
