@@ -1,3 +1,4 @@
+/*
 // =======================
 // MAJOR VARIABLES
 // =======================
@@ -6,7 +7,6 @@ const { Error, NativeError } = require('mongoose');
 const { create } = require('../models/moviesModel.js');
 const movies = express.Router();
 const MovieFavorites = require('../models/moviesModel.js');
-const router = express.Router();
 
 // =======================
 // RESTFUL ROUTES
@@ -14,11 +14,9 @@ const router = express.Router();
 // INDEX
 movies.get('/', async (req, res) => {
     try {
-        // attempt to grab bookmarks
-        const foundBookmark = await Bookmark.find({})
-        res.status(200).json(foundBookmark)
+        const foundFavorites = await MovieFavorites.find({})
+        res.status(200).json(foundFavorites)
     } catch(error) {
-        // handle errors
         res.status(400).json(error);
     }
 })
@@ -65,4 +63,4 @@ movies.get('/:id', async (req, res) => {
 })
 
 module.export = movies;
-module.export = router;
+*/

@@ -3,7 +3,7 @@ const { Schema, model } = require('mongoose');
 
 const moviesSchema = Schema({
     imdbID: { type: String, required: true },
-    note: { type: String },
+    note: { type: String }
 });
 
 module.exports = model('MovieFavorites', moviesSchema);

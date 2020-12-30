@@ -65,14 +65,26 @@ const Movies = () => {
 
     const handleFavoriteSubmit = async (e, id) => {
         e.preventDefault();
-        let noteHolder = noteInput.current.value;
+        // let noteHolder = noteInput.current.value;
         let imdbID = id;
         let newFavorite = JSON.stringify({
             imdbID: imdbID,
-            note: noteHolder
+            note: ""
         });
         e.currentTarget.reset();
         console.log(newFavorite);
+        try {
+            const response = await fetch('http://localhost:3001/favorites', {
+                method: 'POST',
+                headers: {
+                    'Content-type' : 'application/json'
+                },
+                body: newFavorite
+            });
+            const data = await response.json();
+        } catch (error) {
+            console.error(error);
+        }
     }
 
     // Use effect necessary stuff
@@ -102,15 +114,14 @@ const Movies = () => {
                                 (evt) => {
                                     handleFavoriteSubmit(evt, e.imdbID);
                                 }
-                            }>
-                                <input type="text" className="movie-note-input" ref={noteInput}/>
+                            } className="movies-note-form">
                                 <input type="submit" value="Add to Favorites" className="movie-note-button"/>
                             </form>
                             <div className="subinfo-for-movies">
-                                <li key={`director-${e.imdbID}`}><span className="subinfo-for-movies-header">Director:</span> {e.Director}</li>
-                                <li key={`country-${e.imdbID}`}><span className="subinfo-for-movies-header">Country:</span> {e.Country}</li>
-                                <li key={`awards-${e.imdbID}`}><span className="subinfo-for-movies-header">Awards:</span> {e.Awards}</li>
-                                <li key={`genre-${e.imdbID}`}><span className="subinfo-for-movies-header">Genre:</span> {e.Genre}</li>
+                                <li key={`director-${e.imdbID}`}><span className="subinfo-for-movies-header">Director</span>: {e.Director}</li>
+                                <li key={`country-${e.imdbID}`}><span className="subinfo-for-movies-header">Country</span>: {e.Country}</li>
+                                <li key={`awards-${e.imdbID}`}><span className="subinfo-for-movies-header">Awards</span>: {e.Awards}</li>
+                                <li key={`genre-${e.imdbID}`}><span className="subinfo-for-movies-header">Genre</span>: {e.Genre}</li>
                             </div>
                         </div>
                     )

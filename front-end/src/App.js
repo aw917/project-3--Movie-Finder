@@ -11,9 +11,9 @@ function App() {
       <title>Movie Finder</title>
       <nav>
         <div className="nav-links">
-          <Link to ='/'>Home</Link>
-          <Link to ='/movies'>Movie Finder</Link>
-          <Link to ='/favorites'>Favorites</Link>
+          <Link className="nav-links-for-css" to ='/'>Home</Link>
+          <Link className="nav-links-for-css" to ='/movies'>Movie Finder</Link>
+          <Link className="nav-links-for-css" to ='/favorites'>Favorites</Link>
         </div>
       </nav>
       <Switch>

@@ -26,6 +26,7 @@ nav {
   height: 55px;
   margin: 0 auto;
   background-color: orange;
+  text-decoration: none;
 }
 
 .nav-links {
@@ -41,16 +42,9 @@ nav {
   background-color: orange;
 }
 
-.nav-links:hover {
-  background-color: yellow;
-  cursor: pointer;
-  color: white;
-  font-weight: 700;
-}
-
 /*
 ==========================================
-Main Page
+Home Page
 ==========================================
 */
 .lightbulb-main {
@@ -60,6 +54,24 @@ Main Page
   transform: translateX(-50%);
   border-radius: 5px;
   margin-top: 2.5%;
+  border-color: orange;
+  border-style: solid;
+  border-width: 5px;
+}
+
+.index-description {
+  max-width: 700px;
+  height: auto;
+  margin: 0 auto;
+  background-color: burlywood;
+  display: flex;
+  flex-direction: column;
+  padding: 2.5%;
+  margin-top: 2%;
+  border-radius: 10px;
+  border-color: purple;
+  border-style: solid;
+  border-width: 5px;
 }
 
 
@@ -99,8 +111,22 @@ Movie Finder Page
 }
 
 .movie-search-button {
-  color: white;
   background-color: orange;
+  border-style: solid;
+  border-width: 2px;
+  border-color: purple;
+  border-radius: 5px;
+  color: black
+}
+
+.movie-search-button:hover {
+  color: white;
+  background-color: purple;
+  border-style: solid;
+  border-width: 2px;
+  border-color: white;
+  cursor: pointer;
+  border-radius: 5px;
 }
 
 .movies-search-results p {
@@ -119,7 +145,6 @@ Movie Finder Page
 
 .movies-search-results img {
   width: 50%;
-  
   border-radius: 5px;
   border-color: purple;
   border-style: solid;
@@ -153,6 +178,64 @@ Movie Finder Page
 }
 
 .subinfo-for-movies-header {
-  font-weight: 1000;
+  text-decoration: underline;
   background-color: orange;
+}
+
+.movie-note-button {
+  color: white;
+  background-color: purple;
+  border-radius: 5px;
+}
+
+.movie-note-button:hover {
+  color: white;
+  background-color: orange;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+.movies-note-form {
+  margin-top: 1.5%;
+  margin-bottom: 1.5%;
+}
+
+/*
+==========================================
+Favorites Page
+==========================================
+*/
+.header-for-favorites {
+  text-align: center;
+  color: purple;
+}
+
+.update-movie-note-button {
+  border-radius: 5px;
+  background-color: purple;
+  border: black;
+  border-style: solid;
+  border-width: 2px;
+  color: white;
+  font-weight: 800;
+}
+
+.update-movie-note-button:hover {
+  border-radius: 5px;
+  background-color: orange;
+  border: white;
+  border-style: solid;
+  border-width: 2px;
+  color: black;
+  cursor: pointer;
+  font-weight: 800;
+}
+
+.movie-note-input {
+  border-radius: 5px;
+  border-color: white;
+  border-style: solid;
+  background-color: #800080;
+  color: white;
+  font-weight: bold;
 }
