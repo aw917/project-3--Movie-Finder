@@ -1,5 +1,6 @@
 import { useState, useEffect, useRef } from 'react';
 import { Route, Link, Switch } from 'react-router-dom';
+import apiKey from './ignorethis';
 import './App.css';
 import Index from './Components/Index/Index.js'
 import Movies from './Components/Movies/Movies.js'

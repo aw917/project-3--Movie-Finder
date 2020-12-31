@@ -1,5 +1,6 @@
 import { useState, useEffect, useRef } from 'react';
 import React from 'react'
+import apiKey from '../../ignorethis.js'
 
 const Movies = () => {
     // React states
@@ -12,9 +13,6 @@ const Movies = () => {
 
     // Use ref
     const noteInput = useRef(null);
-
-    // API info
-    const apiKey = '3b12114f';
 
     // Retrieve individual movie information from API
     const getMovieInfo = async (idHolder) => {
@@ -94,15 +92,17 @@ const Movies = () => {
 
     return (
         <div>
-            <h2>Search for a movie!</h2>
-            <p>Only the title is required, the year can just help you find a specific movie.</p>
-            <form onSubmit={handleSubmit}>
-                <label htmlFor="title">Title</label>
-                <input type="text" id="title" className="movie-search-input" value={movieTitle} onChange={(e) => setMovieTitle(e.target.value)}/>
-                <label htmlFor="year">Year</label>
-                <input type="number" id="year" className="movie-search-input" value={movieYear} onChange={(e) => setMovieYear(e.target.value)}/>
-                <input type="submit" value="Search" className="movie-search-button"/>
-            </form>
+            <div className='movie-search-section'>
+                <h2>Search for a movie!</h2>
+                <p>Only the title is required, the year can just help you find a specific movie.</p>
+                <form onSubmit={handleSubmit}>
+                    <label htmlFor="title">Title</label>
+                    <input type="text" id="title" className="movie-search-input" value={movieTitle} onChange={(e) => setMovieTitle(e.target.value)}/>
+                    <label htmlFor="year">Year</label>
+                    <input type="number" id="year" className="movie-search-input" value={movieYear} onChange={(e) => setMovieYear(e.target.value)}/>
+                    <input type="submit" value="Search" className="movie-search-button"/>
+                </form>
+            </div>
             <ul>
             {
                 movieInfo.map((e) => {

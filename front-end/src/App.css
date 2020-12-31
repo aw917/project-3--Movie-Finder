@@ -60,26 +60,54 @@ Home Page
 }
 
 .index-description {
-  max-width: 700px;
+  max-width: 650px;
   height: auto;
   margin: 0 auto;
   background-color: burlywood;
   display: flex;
   flex-direction: column;
   padding: 2.5%;
-  margin-top: 2%;
+  margin-top: 1%;
   border-radius: 10px;
   border-color: purple;
   border-style: solid;
   border-width: 5px;
 }
 
+marquee {
+  margin-top: 1%;
+}
 
 /*
 ==========================================
 Movie Finder Page
 ==========================================
 */
+.movie-search-section {
+  max-width: 75vw;
+  margin-left: 50%;
+  margin-top: 10px;
+  background-color: sandybrown;
+  border-style: solid;
+  border-width: 2px;
+  border-color: purple;
+  border-radius: 5px;
+  padding: 1.5%;
+  transform: translateX(-50%);
+}
+
+.movie-search-section h2 {
+  margin-top: 1%;
+}
+
+.movie-search-section input {
+  max-width: 100px;
+}
+
+.movie-search-section form {
+  font-weight: 650;
+}
+
 .movie-search-input {
   border-radius: 5px;
   border-color: white;

@@ -1,12 +1,14 @@
 import React from 'react'
 import { useState, useEffect, useRef } from 'react';
+import apiKey from '../../ignorethis.js'
+require('dotenv').config();
 
 const Favorites = () => {
+    // favorites has the imdbID's and notes for each movie
     const [favorites, setFavorites] = useState([]);
+    // movieInfo has the actual JSON file from the api for each movie
     const [movieInfo, setMovieInfo] = useState([]);
     const [notes, setNotes] = useState([])
-    
-    const apiKey = '3b12114f';
 
     const favoriteNote = useRef(null);
 
@@ -36,6 +38,7 @@ const Favorites = () => {
     }
 
     const getMovieFromLocalAPI = async () => {
+        console.log(apiKey);
         try {
             // variable to hold our endpoint
             const apiEndpoint = `http://localhost:3001/favorites/`;
@@ -71,13 +74,15 @@ const Favorites = () => {
     
     const handleNoteUpdate = async (dbID, imdbID, evt, mapIndex) => {
         evt.preventDefault();
+        let noteMaker = [];
         let noteHolder = movieInfo;
-        noteHolder[mapIndex].note = favoriteNote.current.value;
+        noteMaker[mapIndex] = this.current.value;
+        setNotes(noteMaker);
+        noteHolder[mapIndex].note = notes[mapIndex];
         setMovieInfo(noteHolder);
         console.log(movieInfo);
         try {
             let movieInfoCopy = favorites;
-            movieInfoCopy[mapIndex].note = favoriteNote.current.value;
             let body = JSON.stringify(movieInfoCopy);
             const response = await fetch (`http://localhost:3001/favorites/${dbID}`, {
               method: 'PUT',
@@ -91,7 +96,7 @@ const Favorites = () => {
           } catch (error) {
             console.error(error);
           }
-        console.log(favoriteNote.current.value);
+        console.log('test');
     }
 
     useEffect(() => {
@@ -118,7 +123,7 @@ const Favorites = () => {
                                     handleNoteUpdate(e._id, e.imdbID, evt, mapIndex);
                                 }
                             } className="movies-note-form">
-                                <input type="text" className="movie-note-input" ref={favoriteNote}/>
+                                <input type="text" className="movie-note-input"/>
                                 <input type="submit" value="Update Note" className="update-movie-note-button"/>
                             </form>
                             <div className="subinfo-for-movies">
