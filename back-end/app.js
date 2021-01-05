@@ -86,6 +86,7 @@ movies.delete('/favorites/:id', async (req, res) => {
 
 // UPDATE
 movies.put('/favorites/:id', async (req, res) => {
+    console.log(req.body);
     try {
         const updatedFavorite = await MovieFavorites.findByIdAndUpdate(req.params.id, req.body, {new: true})
         res.status(200).json(updatedFavorite);

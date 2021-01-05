@@ -1,6 +1,7 @@
 import React from 'react'
 import { useState, useEffect, useRef } from 'react';
 import apiKey from '../../ignorethis.js'
+import Note from './Note/Note.js'
 require('dotenv').config();
 
 const Favorites = () => {
@@ -8,7 +9,7 @@ const Favorites = () => {
     const [favorites, setFavorites] = useState([]);
     // movieInfo has the actual JSON file from the api for each movie
     const [movieInfo, setMovieInfo] = useState([]);
-    const [notes, setNotes] = useState([])
+    const [notes, setNotes] = useState([]);
 
     const favoriteNote = useRef(null);
 
@@ -16,7 +17,6 @@ const Favorites = () => {
         let movieInfoArr =[];
         for (let i = 0; i < idHolder.length; i++) {
             let movieId = idHolder[i].imdbID;
-            idHolder[i].note = "";
             try {
                 // variable to hold our endpoint
                 const apiEndpoint = `http://www.omdbapi.com/?i=${movieId}&apikey=${apiKey}`;
@@ -48,7 +48,7 @@ const Favorites = () => {
             const data = await response.json();
             setFavorites(data)
             getMovieFromMovieAPI(data);
-            console.log(data)
+            console.log({data})
             } catch {
             console.log("Failed to retrieve data")
         }
@@ -71,33 +71,6 @@ const Favorites = () => {
           console.error(error);
         }
     }
-    
-    const handleNoteUpdate = async (dbID, imdbID, evt, mapIndex) => {
-        evt.preventDefault();
-        let noteMaker = [];
-        let noteHolder = movieInfo;
-        noteMaker[mapIndex] = this.current.value;
-        setNotes(noteMaker);
-        noteHolder[mapIndex].note = notes[mapIndex];
-        setMovieInfo(noteHolder);
-        console.log(movieInfo);
-        try {
-            let movieInfoCopy = favorites;
-            let body = JSON.stringify(movieInfoCopy);
-            const response = await fetch (`http://localhost:3001/favorites/${dbID}`, {
-              method: 'PUT',
-              headers: {
-                'Content-type': 'application/json'
-              },
-              body: body
-            })
-            const data = await response.json();
-            setFavorites(movieInfoCopy);
-          } catch (error) {
-            console.error(error);
-          }
-        console.log('test');
-    }
 
     useEffect(() => {
         console.log("use effect")
@@ -118,14 +91,14 @@ const Favorites = () => {
                                     removeMovieFromFavorites(e._id, e.imdbID, evt)
                                 }
                             }>Remove from favorites</button>
-                            <form onSubmit={
-                                (evt) => {
-                                    handleNoteUpdate(e._id, e.imdbID, evt, mapIndex);
-                                }
-                            } className="movies-note-form">
-                                <input type="text" className="movie-note-input"/>
-                                <input type="submit" value="Update Note" className="update-movie-note-button"/>
-                            </form>
+                            <Note
+                                mapIndex={mapIndex}
+                                e={e}
+                                getMovieFromLocalAPI={getMovieFromLocalAPI}
+                                setMovieInfo={setMovieInfo}
+                                movieInfo={movieInfo}
+                                favorites={favorites}
+                            />
                             <div className="subinfo-for-movies">
                                 <li key={`note-${e.imdbID}`}><span className="subinfo-for-movies-header">Note</span>: {e.note}</li>
                                 <li key={`director-${e.imdbID}`}><span className="subinfo-for-movies-header">Director</span>: {e.Director}</li>
