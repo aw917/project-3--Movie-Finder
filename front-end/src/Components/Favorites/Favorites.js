@@ -12,6 +12,7 @@ const Favorites = () => {
     const [notes, setNotes] = useState([]);
 
     const favoriteNote = useRef(null);
+    const localApiEndPoint = 'http://localhost:3001/favorites';
 
     const getMovieFromMovieAPI = async (idHolder) => {
         let movieInfoArr =[];
@@ -41,7 +42,7 @@ const Favorites = () => {
         console.log(apiKey);
         try {
             // variable to hold our endpoint
-            const apiEndpoint = `http://localhost:3001/favorites/`;
+            const apiEndpoint = localApiEndPoint;
             // store response from fetch request in a variable
             const response = await fetch(apiEndpoint);
             // parse the json from the response object
@@ -57,7 +58,7 @@ const Favorites = () => {
     const removeMovieFromFavorites = async (dbID, imdbID, e) => {
         e.preventDefault();
         try {
-          const response = await fetch (`http://localhost:3001/favorites/${dbID}`, {
+          const response = await fetch (`${localApiEndPoint}/${dbID}`, {
             method: 'DELETE',
             headers: {
               'Content-type': 'application/json'

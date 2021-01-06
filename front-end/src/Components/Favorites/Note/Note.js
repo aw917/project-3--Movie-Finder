@@ -3,6 +3,7 @@ import { useState, useEffect, useRef } from 'react';
 const Note = ({mapIndex, e, getMovieFromLocalAPI, setMovieInfo, favorites, movieInfo}) => {
     
     const [inputValue, setInputValue] = useState("");
+    const localApiEndPoint = 'http://localhost:3001/favorites';
 
     const handleNoteUpdate = async (dbID, imdbID, evt, mapIndex) => {
         evt.preventDefault();
@@ -13,7 +14,7 @@ const Note = ({mapIndex, e, getMovieFromLocalAPI, setMovieInfo, favorites, movie
             };
             let body = JSON.stringify(inputNoteValue);
             console.log(body);
-            const response = await fetch (`http://localhost:3001/favorites/${dbID}`, {
+            const response = await fetch (`${localApiEndPoint}/${dbID}`, {
               method: 'PUT',
               headers: {
                 'Content-type': 'application/json'
