@@ -15,7 +15,7 @@ const mongoose = require('mongoose');
 const { Error, NativeError } = require('mongoose');
 const cors = require('cors');
 const app = express();
-const PORT = 3001;
+const PORT = process.env.PORT || 3001;
 // const moviesController = require('./controllers/moviesController');
 const { create } = require('./models/moviesModel.js');
 const MovieFavorites = require('./models/moviesModel.js');
@@ -113,3 +113,5 @@ movies.get('/favorites/:id', async (req, res) => {
 app.listen(PORT, () => {
     console.log('its working on port ' + PORT)
 });
+
+module.exports = app;
