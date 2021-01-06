@@ -7,13 +7,11 @@ const Note = ({mapIndex, e, getMovieFromLocalAPI, setMovieInfo, favorites, movie
 
     const handleNoteUpdate = async (dbID, imdbID, evt, mapIndex) => {
         evt.preventDefault();
-        console.log(inputValue);
         try {
             let inputNoteValue = {
                 note: inputValue
             };
             let body = JSON.stringify(inputNoteValue);
-            console.log(body);
             const response = await fetch (`${localApiEndPoint}/${dbID}`, {
               method: 'PUT',
               headers: {
@@ -22,7 +20,6 @@ const Note = ({mapIndex, e, getMovieFromLocalAPI, setMovieInfo, favorites, movie
               body: body
             })
             const data = await response.json();
-            console.log(data);
             getMovieFromLocalAPI();
           } catch (error) {
             console.error(error);

@@ -20,7 +20,7 @@ const Favorites = () => {
             let movieId = idHolder[i].imdbID;
             try {
                 // variable to hold our endpoint
-                const apiEndpoint = `http://www.omdbapi.com/?i=${movieId}&apikey=${apiKey}`;
+                const apiEndpoint = `https://www.omdbapi.com/?i=${movieId}&apikey=${apiKey}`;
                 // store response from fetch request in a variable
                 const response = await fetch(apiEndpoint);
                 // parse the json from the response object
@@ -29,17 +29,14 @@ const Favorites = () => {
                 addMovieInfo._id = idHolder[i]._id;
                 addMovieInfo.note = idHolder[i].note;
                 movieInfoArr.push(addMovieInfo);
-                console.log(addMovieInfo);
                 } catch {
                 console.log("Failed to retrieve data")
             }
         }
         setMovieInfo(movieInfoArr);
-        console.log(movieInfo);
     }
 
     const getMovieFromLocalAPI = async () => {
-        console.log(apiKey);
         try {
             // variable to hold our endpoint
             const apiEndpoint = localApiEndPoint;
@@ -49,7 +46,6 @@ const Favorites = () => {
             const data = await response.json();
             setFavorites(data)
             getMovieFromMovieAPI(data);
-            console.log({data})
             } catch {
             console.log("Failed to retrieve data")
         }

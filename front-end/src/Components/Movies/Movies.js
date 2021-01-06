@@ -21,7 +21,7 @@ const Movies = () => {
             let movieID = idHolder[i];
             try {
                 // variable to hold our endpoint
-                const apiEndpoint = `http://www.omdbapi.com/?i=${movieID}&apikey=${apiKey}`;
+                const apiEndpoint = `https://www.omdbapi.com/?i=${movieID}&apikey=${apiKey}`;
                 // store response from fetch request in a variable
                 const response = await fetch(apiEndpoint);
                 // parse the json from the response object
@@ -39,7 +39,7 @@ const Movies = () => {
     const searchForMovies = async () => {
         try {
           // variable to hold our endpoint
-          const apiEndpoint = `http://www.omdbapi.com/?s=${movieTitle}&y=${movieYear}&type=movie&apikey=${apiKey}`;
+          const apiEndpoint = `https://www.omdbapi.com/?s=${movieTitle}&y=${movieYear}&type=movie&apikey=${apiKey}`;
           // store response from fetch request in a variable
           const response = await fetch(apiEndpoint);
           // parse the json from the response object
@@ -70,9 +70,8 @@ const Movies = () => {
             note: ""
         });
         e.currentTarget.reset();
-        console.log(newFavorite);
         try {
-            const response = await fetch('http://localhost:3001/favorites', {
+            const response = await fetch('https://project-3-moviefinder.herokuapp.com/api/favorites', {
                 method: 'POST',
                 headers: {
                     'Content-type' : 'application/json'
