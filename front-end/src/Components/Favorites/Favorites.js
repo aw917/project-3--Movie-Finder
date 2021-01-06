@@ -12,7 +12,7 @@ const Favorites = () => {
     const [notes, setNotes] = useState([]);
 
     const favoriteNote = useRef(null);
-    const localApiEndPoint = 'https://project-3-moviefinder.herokuapp.com/favorites';
+    const localApiEndPoint = 'https://project-3-moviefinder.herokuapp.com/api/favorites';
 
     const getMovieFromMovieAPI = async (idHolder) => {
         let movieInfoArr =[];

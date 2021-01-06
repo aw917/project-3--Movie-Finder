@@ -54,7 +54,7 @@ mongoose.connection.once('open', () => {
 app.use('/', movies);
 
 // INDEX
-movies.get('/favorites', async (req, res) => {
+movies.get('/api/favorites', async (req, res) => {
     try {
         const foundFavorites = await MovieFavorites.find({})
         res.status(200).json(foundFavorites)
@@ -64,7 +64,7 @@ movies.get('/favorites', async (req, res) => {
 })
 
 // CREATE
-movies.post('/favorites', async (req, res) => {
+movies.post('/api/favorites', async (req, res) => {
     try {
         const createdFavorite = await MovieFavorites.create(req.body)
         res.status(200).json(createdFavorite)
@@ -75,7 +75,7 @@ movies.post('/favorites', async (req, res) => {
 
 
 // DELETE
-movies.delete('/favorites/:id', async (req, res) => {
+movies.delete('/api/favorites/:id', async (req, res) => {
     try {
         const deletedFavorite = await MovieFavorites.findByIdAndRemove(req.params.id);
         res.status(200).json(deletedFavorite);
@@ -85,7 +85,7 @@ movies.delete('/favorites/:id', async (req, res) => {
 })
 
 // UPDATE
-movies.put('/favorites/:id', async (req, res) => {
+movies.put('/api/favorites/:id', async (req, res) => {
     console.log(req.body);
     try {
         const updatedFavorite = await MovieFavorites.findByIdAndUpdate(req.params.id, req.body, {new: true})
@@ -96,7 +96,7 @@ movies.put('/favorites/:id', async (req, res) => {
 })
 
 // SHOW
-movies.get('/favorites/:id', async (req, res) => {
+movies.get('/api/favorites/:id', async (req, res) => {
     try {
         const showFavorite = await MovieFavorites.findById(req.params.id)
         res.status(200).json(showFavorite)

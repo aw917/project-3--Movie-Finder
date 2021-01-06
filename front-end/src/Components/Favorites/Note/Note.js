@@ -3,7 +3,7 @@ import { useState, useEffect, useRef } from 'react';
 const Note = ({mapIndex, e, getMovieFromLocalAPI, setMovieInfo, favorites, movieInfo}) => {
     
     const [inputValue, setInputValue] = useState("");
-    const localApiEndPoint = 'https://project-3-moviefinder.herokuapp.com/favorites';
+    const localApiEndPoint = 'https://project-3-moviefinder.herokuapp.com/api/favorites';
 
     const handleNoteUpdate = async (dbID, imdbID, evt, mapIndex) => {
         evt.preventDefault();
